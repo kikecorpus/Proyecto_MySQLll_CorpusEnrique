@@ -168,61 +168,53 @@ CALL poblar_tipo_pizza('Especial');
 CALL poblar_tipo_pizza('Vegetariana');
 
 -- -----------------------------------------------------
--- 5. Inserción en la tabla ingrediente
--- Llama al procedimiento (ACTUALIZADO): poblar_ingrediente (nombre, precio, stock, iva, precio_final, medida_id)
--- -----------------------------------------------------
-
--- ID 1: Masa de Pizza (Medida ID 3: Cantidad)
-CALL poblar_ingrediente('Masa de Pizza', 6000.00, 200, 600.00, 6600.00, 3);
--- ID 2: Salsa de Tomate (Medida ID 1: Kg)
-CALL poblar_ingrediente('Salsa de Tomate', 3200.00, 50, 320.00, 3520.00, 1);
--- ID 3: Queso Mozzarella (Medida ID 1: Kg)
-CALL poblar_ingrediente('Queso Mozzarella', 10000.00, 100, 1000.00, 11000.00, 1);
--- ID 4: Jamón (Medida ID 1: Kg)
-CALL poblar_ingrediente('Jamón', 12000.00, 80, 1200.00, 13200.00, 1);
--- ID 5: Champiñones (Medida ID 1: Kg)
-CALL poblar_ingrediente('Champiñones', 4800.00, 60, 480.00, 5280.00, 1);
--- ID 6: Pepperoni (Medida ID 1: Kg)
-CALL poblar_ingrediente('Pepperoni', 16000.00, 70, 1600.00, 17600.00, 1);
--- ID 7: Aceitunas Negras (Medida ID 1: Kg)
-CALL poblar_ingrediente('Aceitunas Negras', 4000.00, 40, 400.00, 4400.00, 1);
--- ID 8: Pimientos (Medida ID 1: Kg)
-CALL poblar_ingrediente('Pimientos', 4400.00, 55, 440.00, 4840.00, 1);
--- ID 9: Cebolla (Medida ID 1: Kg)
-CALL poblar_ingrediente('Cebolla', 2400.00, 45, 240.00, 2640.00, 1);
--- ID 10: Aceite de Oliva (Medida ID 2: ML)
-CALL poblar_ingrediente('Aceite de Oliva', 20000.00, 20, 2000.00, 22000.00, 2);
-
--- -----------------------------------------------------
--- 6. Inserción en la tabla pizza (PRECIOS EN COP)
+-- 5. Inserción en la tabla pizza (PRECIOS EN COP)
 -- Llama al procedimiento: poblar_pizza (nombre, tamaño, tipo_pizza_id, mano_obra, costo_receta, iva, utilidad)
 -- NOTA: Los tipos de pizza son: 1=Clásica, 2=Especial, 3=Vegetariana
 -- -----------------------------------------------------
 
 -- ID 1: Pizza Margarita (Clásica - ID 1)
--- USD Equivalente: MO: 5.00, Receta: 6.50, IVA: 2.00, Utilidad: 12.00 | Total Venta: 25.50
-CALL poblar_pizza('Margarita', 'grande', 1, 20000.00, 26000.00, 8000.00, 48000.00);
--- Precio Venta: $102,000 COP
+CALL poblar_pizza('Margarita', 'grande', 1, 20000.00, 0.19);
 
 -- ID 2: Pizza de Pepperoni (Clásica - ID 1)
--- USD Equivalente: MO: 4.00, Receta: 8.00, IVA: 2.50, Utilidad: 10.00 | Total Venta: 24.50
-CALL poblar_pizza('Pepperoni Clásica', 'mediana', 1, 16000.00, 32000.00, 10000.00, 40000.00);
--- Precio Venta: $98,000 COP
+CALL poblar_pizza('Pepperoni Clásica', 'mediana', 1, 16000.00, 0.19);
 
 -- ID 3: Pizza de la Casa (Especial - ID 2)
--- USD Equivalente: MO: 7.50, Receta: 15.00, IVA: 4.50, Utilidad: 25.00 | Total Venta: 57.00
-CALL poblar_pizza('Suprema Don Piccolo', 'extragrande', 2, 30000.00, 60000.00, 18000.00, 100000.00);
--- Precio Venta: $208,000 COP
+CALL poblar_pizza('Suprema Don Piccolo', 'extragrande', 2, 30000.00, 0.19);
 
 -- ID 4: Pizza de Jamón y Champiñones (Especial - ID 2)
--- USD Equivalente: MO: 5.50, Receta: 9.00, IVA: 3.00, Utilidad: 14.00 | Total Venta: 31.50
-CALL poblar_pizza('Fungui Jamón', 'grande', 2, 22000.00, 36000.00, 12000.00, 56000.00);
--- Precio Venta: $126,000 COP
+CALL poblar_pizza('Fungui Jamón', 'grande', 2, 22000.00, 0.19);
 
 -- ID 5: Pizza Vegetariana (Vegetariana - ID 3)
--- USD Equivalente: MO: 3.00, Receta: 5.50, IVA: 1.50, Utilidad: 8.00 | Total Venta: 18.00
-CALL poblar_pizza('Verde Primavera', 'personal', 3, 12000.00, 22000.00, 6000.00, 32000.00);
--- Precio Venta: $72,000 COP
+CALL poblar_pizza('Verde Primavera', 'personal', 3, 12000.00, 0.19 );
+
+-- -----------------------------------------------------
+-- 6. Inserción en la tabla ingrediente
+-- Llama al procedimiento (ACTUALIZADO): poblar_ingrediente (nombre, precio, stock, iva, precio_final, medida_id)
+-- -----------------------------------------------------
+
+-- ID 1: Masa de Pizza (Medida ID 3: Cantidad)
+CALL poblar_ingrediente('Masa de Pizza', 6000, 200, 3);
+-- ID 2: Salsa de Tomate (Medida ID 1: Kg)
+CALL poblar_ingrediente('Salsa de Tomate', 3200, 50, 1);
+-- ID 3: Queso Mozzarella (Medida ID 1: Kg)
+CALL poblar_ingrediente('Queso Mozzarella', 10000, 100, 1);
+-- ID 4: Jamón (Medida ID 1: Kg)
+CALL poblar_ingrediente('Jamón', 12000, 80, 1);
+-- ID 5: Champiñones (Medida ID 1: Kg)
+CALL poblar_ingrediente('Champiñones', 4800, 60, 1);
+-- ID 6: Pepperoni (Medida ID 1: Kg)
+CALL poblar_ingrediente('Pepperoni', 16000, 70, 1);
+-- ID 7: Aceitunas Negras (Medida ID 1: Kg)
+CALL poblar_ingrediente('Aceitunas Negras', 4000.00, 40, 1);
+-- ID 8: Pimientos (Medida ID 1: Kg)
+CALL poblar_ingrediente('Pimientos', 4400.00, 55, 1);
+-- ID 9: Cebolla (Medida ID 1: Kg)
+CALL poblar_ingrediente('Cebolla', 2400.00, 45, 1);
+-- ID 10: Aceite de Oliva (Medida ID 2: ML)
+CALL poblar_ingrediente('Aceite de Oliva', 20000.00, 20, 2);
+
+
 -- -----------------------------------------------------
 -- 7.Inserción en la tabla receta
 -- Llama al procedimiento: poblar_receta (porcion, ingrediente_id, pizza_id, precio_porcion)
@@ -231,40 +223,40 @@ CALL poblar_pizza('Verde Primavera', 'personal', 3, 12000.00, 22000.00, 6000.00,
 
 -- ** RECETA 1: MARGARITA (Pizza ID 1) **
 CALL poblar_receta(1, 1, 1);   -- 1 Masa
-CALL poblar_receta(0.25, 2, 1);    -- 0.25 kg Salsa
-CALL poblar_receta(0.40, 3, 1);   -- 0.40 kg Queso
-CALL poblar_receta(0.01, 10, 1);   -- 10 ml Aceite
+CALL poblar_receta(1, 2, 1);    -- 0.25 kg Salsa
+CALL poblar_receta(2, 3, 1);   -- 0.40 kg Queso
+CALL poblar_receta(1, 10, 1);   -- 10 ml Aceite
 
 -- ** RECETA 2: PEPPERONI CLÁSICA (Pizza ID 2) **
 CALL poblar_receta(1, 1, 2);   -- 1 Masa
-CALL poblar_receta(0.30, 2, 2);   -- 0.30 kg Salsa
-CALL poblar_receta(0.50, 3, 2);   -- 0.50 kg Queso
-CALL poblar_receta(0.40, 6, 2);   -- 0.40 kg Pepperoni
+CALL poblar_receta(1, 2, 2);   -- 0.30 kg Salsa
+CALL poblar_receta(1, 3, 2);   -- 0.50 kg Queso
+CALL poblar_receta(3, 6, 2);   -- 0.40 kg Pepperoni
 
 -- ** RECETA 3: SUPREMA DON PICCOLO (Pizza ID 3) **
 CALL poblar_receta(1, 1, 3);   -- 1 Masa
-CALL poblar_receta(0.50, 2, 3);   -- 0.50 kg Salsa
-CALL poblar_receta(1.00, 3, 3);  -- 1.00 kg Queso
-CALL poblar_receta(0.50, 4, 3);   -- 0.50 kg Jamón
-CALL poblar_receta(0.30, 5, 3);   -- 0.30 kg Champiñones
-CALL poblar_receta(0.40, 6, 3);   -- 0.40 kg Pepperoni
-CALL poblar_receta(0.20, 8, 3);    -- 0.20 kg Pimientos
+CALL poblar_receta(1, 2, 3);   -- 0.50 kg Salsa
+CALL poblar_receta(1, 3, 3);  -- 1.00 kg Queso
+CALL poblar_receta(1, 4, 3);   -- 0.50 kg Jamón
+CALL poblar_receta(1, 5, 3);   -- 0.30 kg Champiñones
+CALL poblar_receta(1, 6, 3);   -- 0.40 kg Pepperoni
+CALL poblar_receta(1, 8, 3);    -- 0.20 kg Pimientos
 
 -- ** RECETA 4: FUNGUI JAMÓN (Pizza ID 4) **
 CALL poblar_receta(1, 1, 4);   -- 1 Masa
-CALL poblar_receta(0.40, 2, 4);   -- 0.40 kg Salsa
-CALL poblar_receta(0.70, 3, 4);   -- 0.70 kg Queso
-CALL poblar_receta(0.60, 4, 4);   -- 0.60 kg Jamón
-CALL poblar_receta(0.50, 5, 4);   -- 0.50 kg Champiñones
+CALL poblar_receta(2, 2, 4);   -- 0.40 kg Salsa
+CALL poblar_receta(1, 3, 4);   -- 0.70 kg Queso
+CALL poblar_receta(1, 4, 4);   -- 0.60 kg Jamón
+CALL poblar_receta(1, 5, 4);   -- 0.50 kg Champiñones
 
 -- ** RECETA 5: VERDE PRIMAVERA (Pizza ID 5) **
 CALL poblar_receta(1, 1, 5);   -- 1 Masa
-CALL poblar_receta(0.20, 2, 5);    -- 0.20 kg Salsa
-CALL poblar_receta(0.30, 3, 5);   -- 0.30 kg Queso
-CALL poblar_receta(0.20, 5, 5);   -- 0.20 kg Champiñones
-CALL poblar_receta(0.10, 7, 5);    -- 0.10 kg Aceitunas
-CALL poblar_receta(0.15, 8, 5);    -- 0.15 kg Pimientos
-CALL poblar_receta(0.10, 9, 5);    -- 0.10 kg Cebolla
+CALL poblar_receta(2, 2, 5);    -- 0.20 kg Salsa
+CALL poblar_receta(3, 3, 5);   -- 0.30 kg Queso
+CALL poblar_receta(3, 5, 5);   -- 0.20 kg Champiñones
+CALL poblar_receta(3, 7, 5);    -- 0.10 kg Aceitunas
+CALL poblar_receta(1, 8, 5);    -- 0.15 kg Pimientos
+CALL poblar_receta(3, 9, 5);    -- 0.10 kg Cebolla
 
 
 -- -- -----------------------------------------------------
@@ -315,21 +307,20 @@ CALL poblar_detalle_pedido(3, 1, 5);  -- 1x Suprema Don Piccolo EG ($208,000)
 -- 10. Inserción en la tabla pago
 -- -----------------------------------------------------
 -- Pedido 1: Pago Total ($200,000) con Tarjeta
-CALL poblar_pago('pago', 'tarjeta de credito', null);
+CALL poblar_pago('pago', 'tarjeta de credito', null,123240,1);
 
-select * from pago;
 
 -- Pedido 2: Pago Total ($300,000) con Efectivo
-CALL poblar_pago('pago', 'efectivo', null);
+CALL poblar_pago('pago', 'efectivo', null, 197780,2);
 
 -- Pedido 3: Pendiente de Pago (Sitio)
-CALL poblar_pago('pendiente', 'efectivo',null);
+CALL poblar_pago('pendiente', 'efectivo',null,0,3);
 
 -- Pedido 4: Pago Total ($252,000) con App
-CALL poblar_pago('pago', 'app',null);
+CALL poblar_pago('pago', 'app',null,43380,4);
 
 -- Pedido 5: Abono ($100,000), el resto pendiente
-CALL poblar_pago('abono', 'tarjeta de credito', null);
+CALL poblar_pago('abono', 'tarjeta de credito', null,32100,5);
 
 -- -----------------------------------------------------
 -- 11. Inserción en la tabla domicilio
@@ -337,13 +328,14 @@ CALL poblar_pago('abono', 'tarjeta de credito', null);
 -- -----------------------------------------------------
 
 -- Pedido 1 (Cliente 1): Entregado por Repartidor 23 (N)
-CALL poblar_domicilio('Carrera 10 # 5-20', 5, '19:00:00', '19:30:00', 1, 23);
+CALL poblar_domicilio('Carrera 10 # 5-20', '2025-12-03 19:00:00', '2025-12-03 19:30:00', 1, 23);
 
 -- Pedido 2 (Cliente 2): Entregado por Repartidor 24 (S)
-CALL poblar_domicilio('Avenida 5 # 10-30', 8, '19:15:00', '19:55:00', 2, 24);
+CALL poblar_domicilio('Avenida 5 # 10-30', '2025-12-03 19:15:00', '2025-12-03 19:55:00', 2, 24);
 
 -- Pedido 4 (Cliente 4): Entregado por Repartidor 26 (O)
-CALL poblar_domicilio('Diagonal 40 # 1-50', 4, '19:30:00', '19:50:00', 4, 26);
+CALL poblar_domicilio('Diagonal 40 # 1-50', '2025-12-03 19:30:00', '2025-12-03 19:50:00', 4, 26);
 
 -- Pedido 5 (Cliente 5): Entregado por Repartidor 27 (N)
-CALL poblar_domicilio('Carrera 70 # 2-60', 10, '19:45:00', '20:20:00', 5, 27);
+CALL poblar_domicilio('Carrera 70 # 2-60','2025-12-03 19:45:00', '2025-12-03 20:20:00', 5, 27);
+	

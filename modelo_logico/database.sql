@@ -17,10 +17,10 @@ ciudad VARCHAR(45),
 departamento VARCHAR(45),
 PRIMARY KEY (id_sede)
 );
+
 -- -----------------------------------------------------
 -- Table `persona`
 -- -----------------------------------------------------
-
 CREATE TABLE IF NOT EXISTS persona(
   id_persona INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(150) NOT NULL,
@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS persona(
 -- ----------------------------------------------------
 -- Table `cliente`
 -- -----------------------------------------------------
-
 CREATE TABLE IF NOT EXISTS cliente (
 id_cliente INT NOT NULL AUTO_INCREMENT,
 PRIMARY KEY (id_cliente),
@@ -88,9 +87,8 @@ CREATE TABLE IF NOT EXISTS pizza (
   tamaño ENUM('personal', 'mediana', 'grande', 'extragrande') NOT NULL,
   tipo_pizza_id INT NOT NULL,
   mano_obra DECIMAL(10,2) NOT NULL,
-  costo_receta DECIMAL(10,2) NOT NULL,
+  costo_receta DECIMAL(10,2) NOT NULL DEFAULT 0,
   IVA DECIMAL(10,2) NOT NULL,
-  utilidad DECIMAL (10,2) NOT NULL,
   PRIMARY KEY (id_producto),
   FOREIGN KEY (tipo_pizza_id)
   REFERENCES tipo_pizza (id_tipo_pizza));
@@ -143,12 +141,11 @@ CREATE TABLE IF NOT EXISTS ingrediente (
   ingrediente VARCHAR(45) NOT NULL,
   precio DECIMAL(10,2) NULL,
   stock INT NULL,
-  IVA DECIMAL(10,2) NULL,
-  precio_final DECIMAL(10,2) NULL,
   medida_id INT NULL,
   PRIMARY KEY (id_ingrediente),
   FOREIGN KEY (medida_id)
   REFERENCES medida (id_medida));
+  
 
 -- ----------------------------------------------------
 -- Table `repartidor`
@@ -196,6 +193,8 @@ CREATE TABLE IF NOT EXISTS receta (
   FOREIGN KEY (pizza_id)
   REFERENCES pizza (id_producto));
   
+  
+
  
 -- -----------------------------------------------------
 -- Table `usuario`
@@ -208,3 +207,6 @@ CREATE TABLE IF NOT EXISTS usuario (
   PRIMARY KEY (id_usuario),
   FOREIGN KEY (id_usuario)
   REFERENCES persona (id_persona));
+  
+
+  
