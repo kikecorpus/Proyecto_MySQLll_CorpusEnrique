@@ -1,4 +1,3 @@
-# Proyecto_MySQLll_CorpusEnrique
 
 # Proyecto_MySQLll_CorpusEnrique
 
