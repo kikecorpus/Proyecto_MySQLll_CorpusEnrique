@@ -23,7 +23,6 @@ FOR EACH ROW
 BEGIN
 	DECLARE cant_porcion INT;
     DECLARE precio_ingrediente DECIMAL(10,2);
-    DECLARE monto_porcion DECIMAL(10,2);
     
     SET cant_porcion = new.porcion;
     
@@ -33,7 +32,6 @@ BEGIN
     WHERE id_ingrediente = NEW.ingrediente_id;
 
 	SET NEW.precio_porcion = calcular_costo_porcion(NEW.porcion, precio_ingrediente);
-
 END; //
 DELIMITER ;
 
@@ -47,19 +45,21 @@ CREATE TRIGGER costo_receta
 AFTER INSERT ON receta
 FOR EACH ROW
 BEGIN
-	DECLARE id_pizza INT; 
+	DECLARE id INT; 
     
-	SET id_pizza = new.pizza_id;
+	SET id = new.pizza_id;
     
     UPDATE pizza 
-    SET costo_receta = calcular_costo_receta(id_pizza)
-    WHERE id_producto = id_pizza;
+    SET costo_receta = calcular_costo_receta(id)
+    WHERE pizza.id_pizza = id;
 END; //
 DELIMITER ;
+
 
 -- -----------------------------------------------------
 -- disparador calcular total pedido
 -- -----------------------------------------------------
+
 DELIMITER //
 
 CREATE TRIGGER total_pedido
@@ -71,26 +71,29 @@ BEGIN
 	SET id_pedido_v = new.pedido_id;
     
     UPDATE pedido
-    SET total = calcular_total_pedido(id_pedido_v)
+    SET precio_final = calcular_total_pedido(id_pedido_v)
     WHERE id_pedido = id_pedido_v ;
 END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
--- disparador asiga domicilio o pedido a pago
+-- disparador asigna domicilio o pedido a pago
 -- -----------------------------------------------------
-
-DELIMITER //
-
+DELIMITER //    
 CREATE TRIGGER actualizar_codigo_pago_domicilio
 AFTER INSERT ON domicilio
 FOR EACH ROW
 BEGIN
+
     UPDATE pago
     SET codigo = NEW.id_domicilio
     WHERE codigo = NEW.pedido_id;
-        
-END; //
 
+    UPDATE pago
+    SET pago_domicilio = 1
+    WHERE codigo = NEW.id_domicilio and ;
+
+END; //
 DELIMITER ;
+
 

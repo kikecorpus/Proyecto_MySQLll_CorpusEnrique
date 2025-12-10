@@ -15,6 +15,7 @@ BEGIN
 END; //
 DELIMITER ; 
 
+
 -- select calcular_precio_con_iva(0.20,100000 );
 
 -- ---------------------------------------------------------
@@ -38,18 +39,17 @@ DELIMITER ;
 -- Calcular costo de la receta 
 -- ---------------------------------------------------------
 DELIMITER //
-CREATE FUNCTION calcular_costo_receta (id_pizza INT)
+CREATE FUNCTION calcular_costo_receta (id INT)
 RETURNS DECIMAL(10,2)
 NOT DETERMINISTIC
 READS SQL DATA
 BEGIN
 	declare precio_receta DECIMAL(10,2);
     
-    
 	select SUM(precio_porcion)
     INTO precio_receta
     FROM receta
-    WHERE receta.pizza_id = id_pizza;
+    WHERE receta.pizza_id = id;
     
     return precio_receta; 
 END ; //
@@ -65,8 +65,11 @@ DETERMINISTIC
 READS SQL DATA
 BEGIN
 	DECLARE subtotal DECIMAL(10,2); 
+    DECLARE precio_base DECIMAL(10,2);
+    
+    SET precio_base = calcular_costo_receta(id_pizza) + mano_obra; 
 	
-    SET subtotal = calcular_precio_con_iva(mano_obra, iva) + calcular_costo_receta(id_pizza);
+    SET subtotal = calcular_precio_con_iva( iva, precio_base);
     
 	RETURN subtotal;
 END ; //

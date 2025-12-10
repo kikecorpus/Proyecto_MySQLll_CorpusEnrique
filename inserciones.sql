@@ -268,16 +268,16 @@ CALL poblar_receta(3, 9, 5);    -- 0.10 kg Cebolla
 CALL poblar_pedido(1, 19,'domicilio','entregado');
 
 -- Pedido 2 (ID 2): Domicilio. Total: $300,000 COP
-CALL poblar_pedido(2, 20, 'domicilio','entregado' );
+CALL poblar_pedido(2, 20,'domicilio','entregado');
 
 -- Pedido 3 (ID 3): Recoger en Tienda. Total: $102,000 COP
-CALL poblar_pedido(3, 19, 'sitio','preparacion');
+CALL poblar_pedido(3, 19,'sitio','preparacion');
 
 -- Pedido 4 (ID 4): Domicilio. Total: $252,000 COP
-CALL poblar_pedido(4, 21, 'domicilio','entregado');
+CALL poblar_pedido(4, 21,'domicilio','entregado');
 
 -- Pedido 5 (ID 5): Domicilio. Total: $208,000 COP
-CALL poblar_pedido(5, 20, 'domicilio','entregado');
+CALL poblar_pedido(5, 20,'domicilio','entregado');
 
 -- -----------------------------------------------------
 -- 9. Inserción en la tabla detalle_pedido (SUBTOTALES EN COP)
@@ -306,6 +306,7 @@ CALL poblar_detalle_pedido(3, 1, 5);  -- 1x Suprema Don Piccolo EG ($208,000)
 -- -----------------------------------------------------
 -- 10. Inserción en la tabla pago
 -- -----------------------------------------------------
+-- estado_pago, tipo_de_pago, fecha_de_pago,recibido,codigo
 -- Pedido 1: Pago Total ($200,000) con Tarjeta
 CALL poblar_pago('pago', 'tarjeta de credito', null,123240,1);
 

@@ -1,4 +1,6 @@
-use pizzeria_don_piccolo; 
+
+USE pizzeria_don_piccolo ;
+
 
 -- -----------------------------------------------------
 -- Procedimientos almacenados
@@ -12,7 +14,7 @@ use pizzeria_don_piccolo;
  -- -----------------------------------------------------
 -- Table `sede`
 -- -----------------------------------------------------
- DELIMITER //
+DELIMITER //
 
 CREATE PROCEDURE poblar_sede(
     IN s_direccion_sede VARCHAR(45),
@@ -22,13 +24,13 @@ CREATE PROCEDURE poblar_sede(
 BEGIN
     INSERT INTO sede(direccion_sede, ciudad, departamento)
     VALUES (s_direccion_sede, s_ciudad, s_departamento);
-END //
+END; //
 
 DELIMITER ;
 -- -----------------------------------------------------
 -- Table `persona`
 -- -----------------------------------------------------
-delimiter //
+DELIMITER //
 create procedure poblar_persona (
 IN nombre_p varchar(45), 
 IN apellido_p VARCHAR(45), 
@@ -42,20 +44,20 @@ begin
 	insert into persona (nombre,  apellido, tipo_documento, documento, telefono, direccion, correo, sede_id)
     values(nombre_p, apellido_p, tipo_documento_p, documento_p, telefono_p, direccion_p, correo_p, sede_id_p);
 end; //
-delimiter ; 
+DELIMITER ; 
 
 
 -- -----------------------------------------------------
 -- Table `cliente`
 -- -----------------------------------------------------
- DELIMITER //
+DELIMITER //
 CREATE PROCEDURE poblar_cliente(
     IN id_cliente_p INT
 )
 BEGIN
     INSERT INTO cliente(id_cliente)
     VALUES(id_cliente_p);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -68,7 +70,7 @@ CREATE PROCEDURE poblar_vendedor(
 BEGIN
     INSERT INTO vendedor(id_vendedor)
     VALUES(id_vendedor_p);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -97,7 +99,7 @@ CREATE PROCEDURE poblar_tipo_pizza(
 BEGIN
     INSERT INTO tipo_pizza(tipo)
     VALUES(p_tipo);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -114,7 +116,7 @@ CREATE PROCEDURE poblar_pizza(
 BEGIN
     INSERT INTO pizza(nombre, tamaño, tipo_pizza_id, mano_obra, iva)
     VALUES(p_nombre, p_tamano, p_tipo_pizza_id, p_mano_obra, p_iva);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -136,13 +138,13 @@ BEGIN
 	SELECT mano_obra,IVA
     INTO costo_mano_obra,costo_iva
     FROM pizza 
-    WHERE id_producto = p_pizza_id;
+    WHERE id_pizza = p_pizza_id;
 
     SET t_subtotal = calcular_subtotal(costo_mano_obra,costo_iva,p_pizza_id);
     
     INSERT INTO detalle_pedido(pizza_id,cantidad, pedido_id,subtotal)
     VALUES(p_pizza_id, p_cantidad, p_pedido_id, t_subtotal);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -165,9 +167,9 @@ BEGIN
     VALUES (p_estado_pago, p_tipo_pago, p_fecha_pago,p_recibido,p_codigo);
 END; //
 DELIMITER ;
-select * from pago;
 
-delimiter //
+
+DELIMITER //
 -- -----------------------------------------------------
 -- Table `medida`
 -- -----------------------------------------------------
@@ -179,7 +181,7 @@ CREATE PROCEDURE poblar_medida(
 BEGIN
     INSERT INTO medida(medida, cantidad)
     VALUES(p_medida, p_cantidad);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -195,7 +197,7 @@ CREATE PROCEDURE poblar_ingrediente(
 BEGIN
     INSERT INTO ingrediente(ingrediente,precio, stock, medida_id)
     VALUES(p_ingrediente, p_precio, p_stock, p_medida_id);
-END //
+END; //
 DELIMITER ;
 
 
@@ -213,7 +215,7 @@ CREATE PROCEDURE poblar_repartidor(
 BEGIN
     INSERT INTO repartidor(id_repartidor, zona, estado)
     VALUES(p_id_persona, p_zona, p_estado);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -239,8 +241,9 @@ BEGIN
     SET total_domicilio =  precio_domi + calcular_total_pedido(p_pedido_id);
     
     INSERT INTO domicilio(direccion_domicilio, hora_salida, hora_entrega, pedido_id, repartidor_id, distancia_aprox_km,precio_domicilio,precio_final_pedido)
+    
     VALUES(p_direccion, p_hora_salida,p_hora_entrega, p_pedido_id, p_repartidor_id,distancia,precio_domi,total_domicilio);
-END //
+END; //
 DELIMITER ;
 
 -- -----------------------------------------------------
@@ -255,13 +258,13 @@ CREATE PROCEDURE poblar_receta(
 BEGIN
     INSERT INTO receta(porcion, ingrediente_id, pizza_id)
     VALUES(p_porcion, p_ingrediente_id, p_pizza_id);
-END //
+END; //
 
 DELIMITER ;
 -- -----------------------------------------------------
 -- Table `usuario`
 -- -----------------------------------------------------
- DELIMITER //
+DELIMITER //
 CREATE PROCEDURE poblar_usuario(
     IN p_id_persona INT,
     IN p_usuario VARCHAR(45),
@@ -270,7 +273,7 @@ CREATE PROCEDURE poblar_usuario(
 BEGIN
     INSERT INTO usuario(id_usuario, usuario, contrasena)
     VALUES(p_id_persona, p_usuario, p_contrasena);
-END //
+END; //
 DELIMITER ;
 
 
