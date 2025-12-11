@@ -329,14 +329,14 @@ CALL poblar_pago('abono', 'tarjeta de credito', null,32100,5);
 -- -----------------------------------------------------
 
 -- Pedido 1 (Cliente 1): Entregado por Repartidor 23 (N)
-CALL poblar_domicilio('Carrera 10 # 5-20', '2025-12-03 19:00:00', '2025-12-03 19:30:00', 1, 23);
+CALL poblar_domicilio('Carrera 10 # 5-20', '2025-12-03 19:00:00', '2025-12-03 19:30:00', 1, 23,'entregado');
 
 -- Pedido 2 (Cliente 2): Entregado por Repartidor 24 (S)
-CALL poblar_domicilio('Avenida 5 # 10-30', '2025-12-03 19:15:00', '2025-12-03 19:55:00', 2, 24);
+CALL poblar_domicilio('Avenida 5 # 10-30', '2025-12-03 19:15:00', '2025-12-03 19:55:00', 2, 24,'en_ruta');
 
 -- Pedido 4 (Cliente 4): Entregado por Repartidor 26 (O)
-CALL poblar_domicilio('Diagonal 40 # 1-50', '2025-12-03 19:30:00', '2025-12-03 19:50:00', 4, 26);
+CALL poblar_domicilio('Diagonal 40 # 1-50', '2025-12-03 19:30:00', '2025-12-03 19:50:00', 4, 26,'entregado');
 
 -- Pedido 5 (Cliente 5): Entregado por Repartidor 27 (N)
-CALL poblar_domicilio('Carrera 70 # 2-60','2025-12-03 19:45:00', '2025-12-03 20:20:00', 5, 27);
+CALL poblar_domicilio('Carrera 70 # 2-60','2025-12-03 19:45:00', '2025-12-03 20:20:00', 5, 27,'entregado');
 	

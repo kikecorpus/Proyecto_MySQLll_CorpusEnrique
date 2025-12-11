@@ -230,7 +230,8 @@ CREATE PROCEDURE poblar_domicilio(
     IN p_hora_salida DATETIME,
     IN p_hora_entrega DATETIME,
     IN p_pedido_id INT,
-    IN p_repartidor_id INT
+    IN p_repartidor_id INT,
+    IN p_estado ENUM('entregado','en_ruta','cancelado')
 )
 BEGIN
     DECLARE distancia INT;
@@ -240,9 +241,9 @@ BEGIN
     SET precio_domi = distancia * 1000;
     SET total_domicilio =  precio_domi + calcular_total_pedido(p_pedido_id);
     
-    INSERT INTO domicilio(direccion_domicilio, hora_salida, hora_entrega, pedido_id, repartidor_id, distancia_aprox_km,precio_domicilio,precio_final_pedido)
+    INSERT INTO domicilio(direccion_domicilio, hora_salida, hora_entrega, pedido_id, repartidor_id, distancia_aprox_km,precio_domicilio,precio_final_pedido,estado)
     
-    VALUES(p_direccion, p_hora_salida,p_hora_entrega, p_pedido_id, p_repartidor_id,distancia,precio_domi,total_domicilio);
+    VALUES(p_direccion, p_hora_salida,p_hora_entrega, p_pedido_id, p_repartidor_id,distancia,precio_domi,total_domicilio,p_estado);
 END; //
 DELIMITER ;
 

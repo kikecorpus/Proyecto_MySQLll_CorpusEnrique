@@ -174,6 +174,7 @@ CREATE TABLE IF NOT EXISTS domicilio (
   hora_entrega TIME NOT NULL,
   pedido_id INT NOT NULL,
   repartidor_id INT NOT NULL,
+  estado ENUM('entregado','en_ruta','cancelado'),
   PRIMARY KEY (id_domicilio),
   FOREIGN KEY (pedido_id)
   REFERENCES pedido (id_pedido),
