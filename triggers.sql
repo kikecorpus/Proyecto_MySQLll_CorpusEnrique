@@ -91,7 +91,7 @@ BEGIN
 
     UPDATE pago
     SET pago_domicilio = 1
-    WHERE codigo = NEW.id_domicilio;
+    WHERE codigo = NEW.id_domicilio and pago_domi = 1;
 END; //
 DELIMITER ;
 

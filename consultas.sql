@@ -8,9 +8,9 @@ left join receta r
 on i.id_ingrediente = r.ingrediente_id;
 
 -- consulta de pago 
-select p.codigo, pe.tipo_pedido
+select p.codigo, if( p.codigo = d.id_domicilio, d.id_domicilio, pe.id_pedido)
 from pago p 
 left join pedido pe 
 on p.codigo = pe.id_pedido 
 left join domicilio d 
-on p.codigo = d.id_domicilio ; 
+on p.codigo = d.id_domicilio;
